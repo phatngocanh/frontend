@@ -1,9 +1,5 @@
-import HelloWorld from "@/components/HelloWorld";
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-    return (
-        <div className="container flex justify-center items-center h-full w-full">
-            <HelloWorld />
-        </div>
-    );
+    redirect('/invoice');
 }
