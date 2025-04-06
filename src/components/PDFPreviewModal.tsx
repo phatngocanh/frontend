@@ -35,11 +35,25 @@ export const PDFPreviewModal: React.FC<PDFPreviewModalProps> = ({ isOpen, onClos
                     </div>
 
                     <div className="mb-4 h-[calc(100vh-200px)] w-full">
-                        <iframe
-                            src={pdfUrl}
+                        <object
+                            data={`${pdfUrl}#toolbar=0`}
+                            type="application/pdf"
                             className="h-full w-full rounded border border-gray-200"
-                            title="PDF Preview"
-                        />
+                        >
+                            <div className="flex h-full w-full items-center justify-center">
+                                <p className="text-center">
+                                    Unable to display PDF. {' '}
+                                    <a 
+                                        href={pdfUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 hover:text-blue-800"
+                                    >
+                                        Click here to open in new tab
+                                    </a>
+                                </p>
+                            </div>
+                        </object>
                     </div>
 
                     <div className="flex flex-col space-y-2 sm:flex-row sm:justify-end sm:space-x-4 sm:space-y-0">
