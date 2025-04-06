@@ -1,5 +1,6 @@
-import React from 'react';
-import { Dialog } from '@headlessui/react';
+import React from "react";
+
+import { Dialog } from "@headlessui/react";
 
 interface PDFPreviewModalProps {
     isOpen: boolean;
@@ -8,30 +9,16 @@ interface PDFPreviewModalProps {
     onDownload: () => void;
 }
 
-export const PDFPreviewModal: React.FC<PDFPreviewModalProps> = ({
-    isOpen,
-    onClose,
-    pdfUrl,
-    onDownload,
-}) => {
+export const PDFPreviewModal: React.FC<PDFPreviewModalProps> = ({ isOpen, onClose, pdfUrl, onDownload }) => {
     return (
-        <Dialog
-            open={isOpen}
-            onClose={onClose}
-            className="fixed inset-0 z-50 overflow-y-auto"
-        >
+        <Dialog open={isOpen} onClose={onClose} className="fixed inset-0 z-50 overflow-y-auto">
             <div className="flex min-h-screen items-center justify-center">
                 <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
 
                 <Dialog.Panel className="relative mx-auto max-w-4xl rounded-lg bg-white p-4 shadow-xl">
                     <div className="mb-4 flex justify-between">
-                        <Dialog.Title className="text-lg font-medium">
-                            Preview Invoice
-                        </Dialog.Title>
-                        <button
-                            onClick={onClose}
-                            className="text-gray-500 hover:text-gray-700"
-                        >
+                        <Dialog.Title className="text-lg font-medium">Preview Invoice</Dialog.Title>
+                        <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
                             <span className="sr-only">Close</span>
                             <svg
                                 className="h-6 w-6"
@@ -73,4 +60,4 @@ export const PDFPreviewModal: React.FC<PDFPreviewModalProps> = ({
             </div>
         </Dialog>
     );
-}; 
+};

@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { generateInvoicePDF, downloadPDF, GenerateInvoiceRequest } from '@/services/invoice';
-import { PDFPreviewModal } from '@/components/PDFPreviewModal';
-import { toast } from 'react-toastify';
-import InvoiceForm from '@/components/invoice/InvoiceForm';
+import { useState } from "react";
+import { toast } from "react-toastify";
+
+import InvoiceForm from "@/components/invoice/InvoiceForm";
+import { PDFPreviewModal } from "@/components/PDFPreviewModal";
+import { downloadPDF, generateInvoicePDF, GenerateInvoiceRequest } from "@/services/invoice";
 
 export default function InvoicePage() {
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -12,20 +13,20 @@ export default function InvoicePage() {
 
     const handleGeneratePDF = async (data: GenerateInvoiceRequest) => {
         try {
-            console.log('Generating PDF with data:', data); // Debug log
+            console.log("Generating PDF with data:", data); // Debug log
             const url = await generateInvoicePDF(data);
-            console.log('Generated PDF URL:', url); // Debug log
+            console.log("Generated PDF URL:", url); // Debug log
             setPdfUrl(url);
             setIsPreviewOpen(true);
         } catch (error) {
-            console.error('Error generating PDF:', error);
-            toast.error('Failed to generate PDF');
+            console.error("Error generating PDF:", error);
+            toast.error("Failed to generate PDF");
         }
     };
 
     const handleDownload = () => {
         if (pdfUrl) {
-            const filename = `invoice-${new Date().toISOString().slice(0, 19).replace(/[:]/g, '-')}.pdf`;
+            const filename = `invoice-${new Date().toISOString().slice(0, 19).replace(/[:]/g, "-")}.pdf`;
             downloadPDF(pdfUrl, filename);
             setIsPreviewOpen(false);
         }
@@ -43,7 +44,7 @@ export default function InvoicePage() {
         <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold mb-8">Xuất Hóa Đơn</h1>
             <InvoiceForm onSubmit={handleGeneratePDF} />
-            
+
             {pdfUrl && (
                 <PDFPreviewModal
                     isOpen={isPreviewOpen}
@@ -54,4 +55,4 @@ export default function InvoicePage() {
             )}
         </div>
     );
-} 
+}
