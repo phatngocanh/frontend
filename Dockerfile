@@ -22,6 +22,10 @@ RUN pnpm install --frozen-lockfile --prefer-frozen-lockfile
 # Builder
 FROM base AS builder
 
+# Accept build argument for API URL
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
 RUN corepack enable
 RUN corepack prepare pnpm@latest --activate
 
